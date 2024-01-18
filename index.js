@@ -5,9 +5,7 @@ const app = express();
 
 //Example
 
-const mongoose = require("mongoose");
 
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const bodyParser = require("body-parser");
 
@@ -34,17 +32,9 @@ app.listen(port, function() {
 
 //Example
 
-let urlSchema = new mongoose.Schema({
-  original: {
-    type: String,
-    required: true},
-  short: {
-    type: Number}
-});
 
 let middleware = app.use(bodyParser.urlencoded({extended: false})); 
 
-let Url = mongoose.model("Url", urlSchema);
 
 app.post("/api/shorturl", middleware, (req, res) => {
   let inputUrl = req.body.url;
